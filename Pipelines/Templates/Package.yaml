@@ -3,6 +3,7 @@
 
 jobs:
 - job: Unity_Packaging
+  condition: and(succeeded(), eq('$(RunPackagingStage)', 'True'))
   workspace:
     clean: all
   continueOnError: false

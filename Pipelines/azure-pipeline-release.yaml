@@ -29,5 +29,6 @@ stages:
   - template: Templates/Sign.yaml
 - stage: Packaging
   dependsOn: Sign_Binaries
+  condition: and(succeeded(), eq('$(RunPackagingStage)', 'True'))
   jobs:
   - template: Templates/Package.yaml

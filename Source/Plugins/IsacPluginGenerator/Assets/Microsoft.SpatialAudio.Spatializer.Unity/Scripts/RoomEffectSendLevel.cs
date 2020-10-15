@@ -40,7 +40,7 @@ namespace Microsoft.SpatialAudio.Spatializer
 #endif
         }
 
-        void Update()
+        private void Update()
         {
             var source = GetComponent<AudioSource>();
 
@@ -57,25 +57,6 @@ namespace Microsoft.SpatialAudio.Spatializer
             }
         }
     }
-
-#if UNITY_EDITOR
-    /// <summary>
-    /// Custom drawer for the startup of AnimationCurves. Sets the grid range for the curve editor.
-    /// </summary>
-    [CustomPropertyDrawer(typeof(CurveDimensions))]
-    public class CurveDrawer : PropertyDrawer
-    {
-        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-        {
-            var curve = attribute as CurveDimensions;
-            if (property.propertyType == SerializedPropertyType.AnimationCurve)
-            {
-                var rect = new Rect(curve.XMin, curve.YMin, System.Math.Abs(curve.XMin - curve.XMax), System.Math.Abs(curve.YMin - curve.YMax));
-                EditorGUI.CurveField(position, property, Color.green, rect, new GUIContent(curve.Label));
-            }
-        }
-    }
-#endif
 
     /// <summary>
     /// Property attribute for setting the CurveField grid range.
